@@ -53,6 +53,11 @@
         layout="@layout/layout_empty_state"
         android:visibility="gone"/>
 
+    <include
+        android:id="@+id/error_state"
+        layout="@layout/layout_error_state"
+        android:visibility="gone"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_armors"

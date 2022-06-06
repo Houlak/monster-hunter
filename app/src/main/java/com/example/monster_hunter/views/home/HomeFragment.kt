@@ -74,26 +74,52 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
         lifecycleScope.launch {
             viewModel.getArmorsResponse.collect { response ->
-                when (response) {
-                    is GetArmorsSuccess -> {
-                        armorAdapter?.addItems(viewModel.armors, viewModel.favArmorsId)
-                        binding.progressBar.visibility = View.GONE
-                    }
-                    is GetArmorsLoading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
+                with(binding){
+                    when (response) {
+                        is GetArmorsSuccess -> {
+                            armorAdapter?.addItems(viewModel.armors, viewModel.favArmorsId)
+                            progressBar.visibility = View.GONE
+                            errorState.llEmptyState.visibility = View.GONE
+                        }
+                        is GetArmorsLoading -> {
+                            progressBar.visibility = View.VISIBLE
+                            errorState.llEmptyState.visibility = View.GONE
+                        }
+                        is GetArmorsError -> {
+                            progressBar.visibility = View.GONE
+                            errorState.llEmptyState.visibility = View.VISIBLE
+                            errorState.btnTryAgain.setOnClickListener {
+                                viewModel.getArmors()
+                            }
+                        }
+                }
                 }
             }
         }
 
         lifecycleScope.launch {
             viewModel.updateFavArmorResponse.collect { response ->
-                when (response) {
-                    is UpdateFavArmorsSuccess -> {
-                        armorAdapter?.favArmorsIds = response.ids
-                        armorAdapter?.notifyItemChanged(response.position)
+                with(binding) {
+                    when (response) {
+                        is UpdateFavArmorsSuccess -> {
+                            armorAdapter?.favArmorsIds = response.ids
+                            armorAdapter?.notifyItemChanged(response.position)
+                        }
+                        is UpdateFavSaveError -> {
+                            errorState.llEmptyState.visibility = View.VISIBLE
+                            errorState.btnTryAgain.setOnClickListener {
+                                viewModel.saveFavArmor(response.armorId,response.position)
+                            }
+                        }
+                        is UpdateFavDeleteError -> {
+                            errorState.llEmptyState.visibility = View.VISIBLE
+                            errorState.btnTryAgain.setOnClickListener {
+                                viewModel.deleteFavArmor(response.armorId, response.position)
+                            }
+                        }
                     }
                 }
+
 
             }
         }

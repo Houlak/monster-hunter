@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.monster_hunter.data.models.Armor
 import com.example.monster_hunter.data.repositories.ArmorRepository
 import com.example.monster_hunter.data.repositories.FavArmorRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -72,7 +74,7 @@ class HomeViewModel(
         viewModelScope.launch {
             favArmorRepository.storeFavArmor(armorId)
                 .catch {
-                    it
+                    updateFavArmorResponse.value = UpdateFavSaveError(armorId,position)
                 }
                 .collect { newIdsList ->
                     favArmorsId = newIdsList
@@ -85,7 +87,7 @@ class HomeViewModel(
         viewModelScope.launch {
             favArmorRepository.deleteFavArmor(armorId)
                 .catch {
-                    it
+                    updateFavArmorResponse.value = UpdateFavDeleteError(armorId,position)
                 }
                 .collect {newIdsList ->
                     favArmorsId = newIdsList
@@ -109,12 +111,17 @@ class HomeViewModel(
     fun getArmors() {
         viewModelScope.launch {
             armorRepository.fetchArmors()
+                .onStart {
+                    getArmorsResponse.value = GetArmorsLoading
+                }
                 .combine(favArmorRepository.fetchFavArmors()) { response1, response2 ->
                     armors = response1
                     unfilteredArmors = response1
                     favArmorsId = response2
                 }
                 .catch {
+                    //this delay its just to show that the states are changing properly
+                    delay(500)
                     getArmorsResponse.value = GetArmorsError
                 }
                 .collect {
@@ -134,6 +141,8 @@ object GetArmorsLoading : GetArmorsResponse()
 sealed class UpdateFavArmorsResponse
 data class UpdateFavArmorsSuccess(val ids:List<Int>, val position:Int) : UpdateFavArmorsResponse()
 object UpdateFavArmorsIdle : UpdateFavArmorsResponse()
+data class UpdateFavSaveError(val armorId: Int, val position:Int) : UpdateFavArmorsResponse()
+data class UpdateFavDeleteError(val armorId: Int, val position:Int) : UpdateFavArmorsResponse()
 
 sealed class SearchArmorsResponse
 data class SearchArmorsSuccess(val data: List<Armor>) :SearchArmorsResponse()

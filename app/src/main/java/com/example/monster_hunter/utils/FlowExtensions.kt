@@ -21,7 +21,7 @@ fun <T> Flow<T>.checkHttpError(): Flow<T> {
     }
 }
 
-suspend inline fun <T> customFlow(retries:Long = 1,crossinline body: suspend FlowCollector<T>.() -> Unit): Flow<T> {
+suspend inline fun <T> customFlow(retries:Long = 2,crossinline body: suspend FlowCollector<T>.() -> Unit): Flow<T> {
     return flow {
         body()
     }
