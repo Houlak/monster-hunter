@@ -50,6 +50,14 @@ class ArmorDetailDialog(val armor: Armor):DialogFragment() {
             lbThunderDamage.text = armor.resistances?.thunder.toString()
             lbFireDamage.text = armor.resistances?.fire.toString()
             lbWaterDamage.text = armor.resistances?.water.toString()
+            lbType.text = "Type: ${armor.type?.replaceFirstChar {
+                it.uppercase()
+            }}"
+
+            Glide.with(requireContext())
+                .load(Armor.typeMap[armor.type?.lowercase()])
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(imArmorType)
 
             Glide.with(requireContext())
                 .load(armor.assets?.imageMale)

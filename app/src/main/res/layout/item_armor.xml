@@ -32,11 +32,12 @@
 
         <TextView
             android:id="@+id/lb_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/ck_fav"
             app:layout_constraintStart_toEndOf="@+id/im_armor"
             app:layout_constraintTop_toTopOf="@+id/im_armor"
             tools:text="Armor Example" />
@@ -52,16 +53,34 @@
             app:layout_constraintTop_toBottomOf="@+id/lb_name"
             tools:text="HIGH" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_shield"
+            app:layout_constraintBottom_toBottomOf="@+id/lb_defense"
+            app:layout_constraintStart_toEndOf="@+id/lb_rank" />
+
         <TextView
             android:id="@+id/lb_defense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/lb_rank"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/lb_name"
             tools:text="+56" />
+
+        <ImageView
+            android:id="@+id/im_armor_type"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lb_defense"
+            app:layout_constraintStart_toEndOf="@+id/lb_defense"
+            tools:background="@drawable/ic_chest" />
 
         <CheckBox
             android:id="@+id/ck_fav"

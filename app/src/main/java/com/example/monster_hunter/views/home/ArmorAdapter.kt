@@ -56,6 +56,7 @@ class ArmorAdapter(
         submitList(list)
         favArmorsIds = favIds
     }
+
     fun addItems(list:List<Armor>) {
         submitList(null)
         submitList(list)
@@ -67,23 +68,22 @@ class ArmorAdapter(
         fun bind(armor: Armor, position: Int) {
             with(itemViewBinding) {
                 lbName.text = armor.name
-                lbDefense.text = (armor.defense?.base ?: 0).toString()
-                lbRank.text = armor.rank
+                lbDefense.text = "+ ${(armor.defense?.base ?: 0)}"
+                lbRank.text = "Rank: ${armor.rank}"
 
                 ckFav.isChecked = favArmorsIds.contains(armor.id)
 
-//                if (favArmorsIds.contains(armor.id)){
-//                    ckFav.isChecked = true
-//                }
-//                ckFav.setOnCheckedChangeListener { compoundButton, b ->
-//                    onFavClick.invoke(armor,b)
-//                }
                 ckFav.setOnClickListener {
                     onFavClick.invoke(armor,ckFav.isChecked,position)
                 }
                 rootLayout.setOnClickListener {
                     onClick.invoke(armor)
                 }
+
+                Glide.with(context)
+                    .load(Armor.typeMap[armor.type?.lowercase()])
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(imArmorType)
 
                 Glide.with(context)
                     .load(armor.assets?.imageMale)

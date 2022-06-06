@@ -1,5 +1,6 @@
 package com.example.monster_hunter.data.models
 
+import com.example.monster_hunter.R
 import com.google.gson.annotations.SerializedName
 
 
@@ -17,6 +18,16 @@ data class Armor(
     @SerializedName("armorSet") var armorSet: ArmorSet? = null,
     @SerializedName("assets") var assets: Assets? = null,
     @SerializedName("crafting") var crafting: Crafting? = null,
-    var isFavorite:Boolean = false
 
-)
+) {
+    companion object {
+        var typeMap = mapOf<String,Int>(
+            "head" to R.drawable.ic_head,
+            "chest" to R.drawable.ic_chest,
+            "gloves" to R.drawable.ic_gloves,
+            "waist" to R.drawable.ic_waist,
+            "legs" to R.drawable.ic_legs
+        )
+    }
+
+}
