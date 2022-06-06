@@ -58,7 +58,6 @@ class ArmorAdapter(
     }
 
     fun addItems(list:List<Armor>) {
-        submitList(null)
         submitList(list)
     }
 
