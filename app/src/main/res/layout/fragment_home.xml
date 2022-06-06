@@ -24,14 +24,13 @@
         android:includeFontPadding="false"
         android:inputType="textVisiblePassword"
         android:paddingStart="10dp"
-        android:hint="Search armor"
+        android:hint="@string/search_armor"
         android:singleLine="true"
         android:visibility="visible" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/sw_fav_armors"
-        android:text="Favorite Armors"
-
+        android:text="@string/favorite_armors"
         android:layout_gravity="end"
         android:layout_marginEnd="30dp"
         android:layout_width="wrap_content"

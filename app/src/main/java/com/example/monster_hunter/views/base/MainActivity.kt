@@ -26,8 +26,8 @@ class MainActivity() : AppCompatActivity() {
         with(binding) {
             tabsViewPager.tabLayoutBuilder(
                 tabLayout, supportFragmentManager, listOf(
-                    AppTabItem("Armors", HomeFragment()),
-                    AppTabItem("About", AboutFragment())
+                    AppTabItem(getString(R.string.armors), HomeFragment()),
+                    AppTabItem(getString(R.string.about), AboutFragment())
                     )
             )
         }

@@ -69,7 +69,7 @@ class ArmorAdapter(
             with(itemViewBinding) {
                 lbName.text = armor.name
                 lbDefense.text = "+ ${(armor.defense?.base ?: 0)}"
-                lbRank.text = "Rank: ${armor.rank}"
+                lbRank.text = context.getString(R.string.armor_rank, armor.rank)
 
                 ckFav.isChecked = favArmorsIds.contains(armor.id)
 

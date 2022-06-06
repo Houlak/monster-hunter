@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MH-Companion</string>
+
+    <string name="armors">Armors</string>
+    <string name="about">About</string>
+
+    <string name="armor_rank">Rank: %1$s</string>
+    <string name="defense_max">Defense Max: %1$s</string>
+    <string name="defense_base">Defense Base: %1$s</string>
+    <string name="defense_augmented">Defense Augmented: %1$s</string>
+    <string name="armor_slots">Slots: %1$s</string>
+    <string name="armor_type">Type: %1$s</string>
+    <string name="author">Made by Felipe Oxandabarat \n \nUsing Monster Hunter DB API</string>
+    <string name="search_armor">Search armor</string>
+    <string name="favorite_armors">Favorite Armors</string>
+    <string name="error_message">Oops, something went wrong!</string>
+    <string name="empty_message">No results found</string>
+
+
 </resources>

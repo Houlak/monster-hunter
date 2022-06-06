@@ -16,7 +16,7 @@ import com.example.monster_hunter.data.models.Armor
 import com.example.monster_hunter.databinding.DialogDetailArmorBinding
 
 
-class ArmorDetailDialog(val armor: Armor):DialogFragment() {
+class ArmorDetailDialog(val armor: Armor) : DialogFragment() {
 
     private var _binding: DialogDetailArmorBinding? = null
     private val binding get() = _binding!!
@@ -40,19 +40,20 @@ class ArmorDetailDialog(val armor: Armor):DialogFragment() {
 
         with(binding) {
             lbArmorName.text = armor.name
-            lbRank.text = "Rank ${armor.rank}"
-            lbDefenseMax.text = "Defense Max: ${armor.defense?.max.toString()}"
-            lbDefenseBase.text = "Defense Base: ${armor.defense?.base.toString()}"
-            lbDefenseAugmented.text = "Defense Augmented: ${armor.defense?.augmented.toString()}"
-            lbSlots.text = "Slots: ${armor.slots?.count().toString()}"
+            lbRank.text = getString(R.string.armor_rank, armor.rank)
+            lbDefenseMax.text = getString(R.string.defense_max, armor.defense?.max.toString())
+            lbDefenseBase.text = getString(R.string.defense_base, armor.defense?.base.toString())
+            lbDefenseAugmented.text =
+                getString(R.string.defense_augmented, armor.defense?.augmented.toString())
+            lbSlots.text = getString(R.string.armor_slots, armor.slots?.count().toString())
             lbIceDamage.text = armor.resistances?.ice.toString()
             lbDragonDamage.text = armor.resistances?.dragon.toString()
             lbThunderDamage.text = armor.resistances?.thunder.toString()
             lbFireDamage.text = armor.resistances?.fire.toString()
             lbWaterDamage.text = armor.resistances?.water.toString()
-            lbType.text = "Type: ${armor.type?.replaceFirstChar {
+            lbType.text = getString(R.string.armor_type, armor.type?.replaceFirstChar {
                 it.uppercase()
-            }}"
+            })
 
             Glide.with(requireContext())
                 .load(Armor.typeMap[armor.type?.lowercase()])
