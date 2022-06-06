@@ -1,4 +1,4 @@
-package com.example.monster_hunter.views
+package com.example.monster_hunter.views.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import com.example.monster_hunter.R
 import com.example.monster_hunter.databinding.ActivityMainBinding
 import com.example.monster_hunter.utils.AppTabItem
 import com.example.monster_hunter.utils.tabLayoutBuilder
+import com.example.monster_hunter.views.about.AboutFragment
 import com.example.monster_hunter.views.home.HomeFragment
 
 class MainActivity() : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity() : AppCompatActivity() {
             tabsViewPager.tabLayoutBuilder(
                 tabLayout, supportFragmentManager, listOf(
                     AppTabItem("Armors", HomeFragment()),
-
+                    AppTabItem("About", AboutFragment())
                     )
             )
         }

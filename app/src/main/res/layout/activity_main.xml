@@ -5,12 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/root_layout"
-    tools:context=".views.MainActivity">
-
-
-<!--        app:tabSelectedTextColor="@color/button_green"-->
-<!--        app:tabTextAppearance="@style/tab_text"-->
-<!--        app:tabTextColor="@color/dark_grey" -->
+    tools:context=".views.base.MainActivity">
 
 
     <androidx.viewpager.widget.ViewPager

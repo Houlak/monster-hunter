@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Monsterhunter">
         <activity
-            android:name=".views.MainActivity"
+            android:name=".views.base.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

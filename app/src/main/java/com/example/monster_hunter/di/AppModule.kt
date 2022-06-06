@@ -8,6 +8,7 @@ import com.example.monster_hunter.data.repositories.ArmorRepositoryImpl
 import com.example.monster_hunter.data.repositories.FavArmorRepository
 import com.example.monster_hunter.data.repositories.FavArmorRepositoryImpl
 import com.example.monster_hunter.retrofit.WebServices
+import com.example.monster_hunter.views.about.AboutViewModel
 import com.example.monster_hunter.views.home.HomeViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,6 +18,8 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { HomeViewModel(armorRepository = get(), favArmorRepository = get()) }
+    viewModel { AboutViewModel() }
+
 }
 
 val repositoryModule = module {
